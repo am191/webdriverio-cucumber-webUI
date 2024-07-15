@@ -7,21 +7,24 @@ const pages = {
     main: MainPage
 }
   
-  Given('I see the main page', async () => {
+  Given('I see the main page', async() => {
       await MainPage.open();
   });
 
 
-  When('I see cookie preference bar', async () => {
+  When('I see cookie preference bar', async() => {
     //check if the cookie button is VISIBLE
       await expect(MainPage.cookiePrefBar).toBeDisplayed();
       await expect(MainPage.customizeCookiesBtn).toBeDisplayed();
   });
 
-  When('I can select optional checkboxes', function () {
-    return 'pending';
+  When('I can select optional checkboxes', async() => {
+      await MainPage.selectCookieCategory('statistics');
   });
 
+  When('I the checkbox is selected', async() => {
+      return 0;
+  });
 
   When('I see a modal pop-up when clicking on <Pielāgot> button', function () {
     return 'pending';

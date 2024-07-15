@@ -26,8 +26,16 @@ class MainPage extends Page {
 
 
     // METHODS TO INTERACT WITH THE MAIN PAGE  
-    selectCookieCategory(category) {
-        
+    getCookieCategory(category) {
+        return $(`input[data-category="${category}"]`)
+    }
+    async selectCookieCategory(category) {
+        const checkbox = this.getCookieCategory(category);
+        await checkbox.click();
+        await checkbox.isSelected();
+        //data-category="statistics"
+        //data-category="functional"
+        //data-category="targeted"
     }
 
     /**

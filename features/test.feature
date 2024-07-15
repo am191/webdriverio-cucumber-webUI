@@ -5,6 +5,7 @@ Feature: Search functionality on LU website
         Given I see the main page
         When I see cookie preference bar 
         And I can select optional checkboxes
+        And I the checkbox is selected
         And I see a modal pop-up when clicking on <Pielāgot> button
         And I click <Saglabāt uzstādījumus> button
         Then I see the main page without the <cookie preference bar>
