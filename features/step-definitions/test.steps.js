@@ -7,14 +7,15 @@ const pages = {
     main: MainPage
 }
   
-  Given(/^I am on the (\w+) page$/, async (page) => {
-      await pages[page].open();
-      browser.pause();
+  Given('I see the main page', async () => {
+      await MainPage.open();
   });
 
 
-  When('I see <cookie preference bar>', function () {
-    return 'pending';
+  When('I see cookie preference bar', async () => {
+    //check if the cookie button is VISIBLE
+      await expect(MainPage.cookiePrefBar).toBeDisplayed();
+      await expect(MainPage.customizeCookiesBtn).toBeDisplayed();
   });
 
   When('I can select optional checkboxes', function () {
@@ -35,3 +36,11 @@ const pages = {
     return 'pending';
   });
 
+
+  When(/^I see {cookie preference bar}$/, () => {
+    return true;
+  });
+
+
+
+  
