@@ -13,10 +13,12 @@ class Navbar {
         return $('button[class="upperMenu__button searchTrigger"');
     }
 
+    get searchBar(){
 
+    }
 
     //methods to interact with the navbar
 
 }
 
-export default new MainPage();
+export default new Navbar();

@@ -3,10 +3,7 @@ import { expect, $ } from '@wdio/globals'
 
 import MainPage from '../pageobjects/main.page.js';
 
-const pages = {
-  main: MainPage
-}
-  
+
   Given('I see the main page', async() => {
     await MainPage.open();
   });
@@ -26,7 +23,7 @@ const pages = {
   });
 
   When('I see a cookie modal pop-up', async() => {
-    const elements = MainPage.cookieModal;
+    const elements = MainPage.cookieModal; //an array of elements
     for (const element of elements) {
       await expect(element).toBeDisplayed();
     };
