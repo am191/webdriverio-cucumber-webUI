@@ -4,46 +4,40 @@ import { expect, $ } from '@wdio/globals'
 import MainPage from '../pageobjects/main.page.js';
 
 const pages = {
-    main: MainPage
+  main: MainPage
 }
   
   Given('I see the main page', async() => {
-      await MainPage.open();
+    await MainPage.open();
   });
-
 
   When('I see cookie preference bar', async() => {
     //check if the cookie button is VISIBLE
-      await expect(MainPage.cookiePrefBar).toBeDisplayed();
-      await expect(MainPage.customizeCookiesBtn).toBeDisplayed();
+    await expect(MainPage.cookiePrefBar).toBeDisplayed();
+    await expect(MainPage.customizeCookiesBtn).toBeDisplayed();
   });
 
-  When('I can select optional checkboxes', async() => {
-      await MainPage.selectCookieCategory('statistics');
+  When('I can select optional checkbox for {string} cookies', async(string) => {
+    await MainPage.selectCookieCategory(string);
   });
 
-  When('I the checkbox is selected', async() => {
-      return 0;
+  When('I click the {string} button', async(string) => {
+    await MainPage.clickButtonByText(string);
   });
 
-  When('I see a modal pop-up when clicking on <Pielāgot> button', function () {
-    return 'pending';
+  When('I see a cookie modal pop-up', async() => {
+    const elements = MainPage.cookieModal();
+    await elements.forEach((element) => {
+      expect(element).toBeDisplayed();
+    })
   });
 
-  When('I click <Saglabāt uzstādījumus> button', function () {
-    return 'pending';
+  Then('I see the main page without the cookie preference bar', async() => {
+    const elements = MainPage.cookieModal();
+    await elements.forEach((element) => {
+      expect(element).not.toBeDisplayed();
+    })
   });
-
-
-  Then('I see the main page without the <cookie preference bar>', function () {
-    return 'pending';
-  });
-
-
-  When(/^I see {cookie preference bar}$/, () => {
-    return true;
-  });
-
 
 
   

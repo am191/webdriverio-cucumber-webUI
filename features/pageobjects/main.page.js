@@ -1,9 +1,7 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
+
 class MainPage extends Page {
     // SELECTORS RELATED TO COOKIE PREF BAR
     get cookiePrefBar() {
@@ -16,13 +14,15 @@ class MainPage extends Page {
     }
 
     get cookieModal(){
-        return $('h2=Sīkdatņu uzstādījumi');
+        const modalDiv = $('div[id="cconsent-modal"]');
+        const modalHeader = $('h2=Sīkdatņu uzstādījumi');
+        return modalDiv, modalHeader;
     }
 
     get cookieModalBtn(){
         return $('button=Saglabāt uzstādījumus');
     }
-    
+
 
 
     // METHODS TO INTERACT WITH THE MAIN PAGE  
@@ -38,9 +38,12 @@ class MainPage extends Page {
         //data-category="targeted"
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
+    async clickButtonByText(buttonText) {
+        const button = $(`button[textContent="${buttonText}"]`);
+        await button.waitForClickable({ timeout: 5000 });
+        await button.click();
+    }
+
     open () {
         return super.open('#');
     }
