@@ -26,17 +26,17 @@ const pages = {
   });
 
   When('I see a cookie modal pop-up', async() => {
-    const elements = MainPage.cookieModal();
-    await elements.forEach((element) => {
-      expect(element).toBeDisplayed();
-    })
+    const elements = MainPage.cookieModal;
+    for (const element of elements) {
+      await expect(element).toBeDisplayed();
+    };
   });
 
   Then('I see the main page without the cookie preference bar', async() => {
-    const elements = MainPage.cookieModal();
-    await elements.forEach((element) => {
-      expect(element).not.toBeDisplayed();
-    })
+    const elements = MainPage.cookieModal;
+    for (const element of elements) {
+      await expect(element).not.toBeDisplayed();
+    };
   });
 
 

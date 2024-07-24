@@ -15,8 +15,8 @@ class MainPage extends Page {
 
     get cookieModal(){
         const modalDiv = $('div[id="cconsent-modal"]');
-        const modalHeader = $('h2=Sīkdatņu uzstādījumi');
-        return modalDiv, modalHeader;
+        const modalHeader = $('//h2[text()="Sīkdatņu uzstādījumi"]');
+        return [modalDiv, modalHeader];
     }
 
     get cookieModalBtn(){
@@ -31,6 +31,7 @@ class MainPage extends Page {
     }
     async selectCookieCategory(category) {
         const checkbox = this.getCookieCategory(category);
+        await checkbox.waitForClickable();
         await checkbox.click();
         await checkbox.isSelected();
         //data-category="statistics"
@@ -39,8 +40,8 @@ class MainPage extends Page {
     }
 
     async clickButtonByText(buttonText) {
-        const button = $(`button[textContent="${buttonText}"]`);
-        await button.waitForClickable({ timeout: 5000 });
+        const button = $(`//button[text()="${buttonText}"]`);
+        await button.waitForClickable({ timeout: 3000 });
         await button.click();
     }
 

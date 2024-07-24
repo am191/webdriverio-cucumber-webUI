@@ -10,7 +10,7 @@ class Navbar {
     }
 
     get searchButton(){
-        
+        return $('button[class="upperMenu__button searchTrigger"');
     }
 
 
