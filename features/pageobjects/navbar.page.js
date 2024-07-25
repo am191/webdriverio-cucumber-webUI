@@ -18,7 +18,7 @@ class Navbar {
     }
 
     //methods to interact with the navbar
-
+    
 }
 
 export default new Navbar();
