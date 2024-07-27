@@ -31,6 +31,7 @@ When('I click search', async(string) => {
 });
 
 When('I see the search result page', async() => {
+  //fetch tab title = Meklēšana - as well
   return 'pending';
 });
 
@@ -41,7 +42,5 @@ When('I see empty search page', async() => {
 
 
 Then('I see more than {int} search match', async(int) => {
-         // When('I see {float} search matches', async (float) {
-           // Write code here that turns the phrase above into concrete actions
-           return 'pending';
-         });
+  await SearchResultPage.compareResults(int);
+});
