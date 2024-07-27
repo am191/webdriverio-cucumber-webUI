@@ -5,20 +5,21 @@ import { $ } from '@wdio/globals'
 class Navbar {
     //getter methods
     get navbarCategories() {
-        const categories = $$('button[class="mainMenu__link"]');
-        return categories;
+        return $$('button[class="mainMenu__link"]');
     }
 
     get searchButton(){
-        return $('button[class="upperMenu__button searchTrigger"');
+        const result = $('span.upperMenu__searchIcon');
+        console.log(result);
+        return result;
     }
 
     get searchBar(){
-        return $('form[id="mainSearchForm"');
+        return $('form[id="mainSearchForm"]');
     }
 
     get searchInput(){
-        return $('textarea[id="searchWindowQuery"');
+        return $('textarea[id="searchWindowQuery"]');
     }
 
     get searchBarButton(){
@@ -26,12 +27,15 @@ class Navbar {
     }
 
     //methods to interact with the navbar
-    async search(query){
+    async search(query) {
         const searchInputField = this.searchInput;
-        const searchTrigger = this.searchBarButton;
-
+    
         await searchInputField.waitForClickable();
-        await searchInputField.setValue(query);
+        await searchInputField.setValue(query);   
+    }
+
+    async triggerSearch(){
+        const searchTrigger = this.searchBarButton;
         await searchTrigger.click();
     }
     

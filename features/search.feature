@@ -9,12 +9,13 @@ Feature: Search functionality on University of Latvia website
         And I see a cookie modal pop-up
         And I click the "Saglabāt uzstādījumus" button
         Then I see the main page without the cookie preference bar
-
+@test
     Scenario: As a user, I can search for an article
         Given I see the Search option
         When I click on the Search button
         And I see the Search bar open
         And I input "abc" in the search input field
+        And I click search
         And I see the search result page
         And I see empty search page
         And I input "datorzinātnes" in the search input field
