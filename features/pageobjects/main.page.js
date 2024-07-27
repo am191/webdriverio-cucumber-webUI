@@ -24,7 +24,6 @@ class MainPage extends Page {
     }
 
 
-
     // METHODS TO INTERACT WITH THE MAIN PAGE  
     getCookieCategory(category) {
         return $(`input[data-category="${category}"]`)
