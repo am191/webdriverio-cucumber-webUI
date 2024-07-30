@@ -5,7 +5,7 @@ import SearchResultPage from '../pageobjects/searchResult.page.js';
 
 //This file contains definitions for 2 scenarios, since they test similar functionalities
 // SCENARIO: As a user, I can sort search results by age
-Given('I see the search result page', function () {
+Given('I see the search result page for {string}', function () {
     // Write code here that turns the phrase above into concrete actions
     return 'pending';
   });

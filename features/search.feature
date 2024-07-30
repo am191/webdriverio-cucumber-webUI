@@ -14,22 +14,22 @@ Feature: Search functionality on University of Latvia website
         Given I see the Search option
         When I click on the Search button
         And I see the Search bar open
-        And I input "abc" in the search input field
+        And I input "abc" in the navigation bar search input field
         And I click search
-        And I see the search result page
-        And I see empty search page
-        And I input "datorzinātnes" in the search input field
+        And I see the search page
+        And I see 0 search matches
+        And I input "datorzinātnes" in the search page input field
         Then I see more than 1 search match
-
+@test1
     Scenario: As a user, I can sort search results by age
-        Given I see the search result page
+        Given I see the search result page for "hyperlink"
         When I see the "KĀRTOT PĒC" filter section
         And I notice the year that the first article is from
         And I choose to sort by the "oldest"
         Then I see the first article is from year 2010
-
+@test2
     Scenario: As a user, I can sort search results by type
-        Given I see the search result page
+        Given I see the search result page for "hyperlink"
         When I open "Tipi" filter section
         And I check <type> checkbox
         And I see all returned results have <type> type
@@ -41,9 +41,9 @@ Feature: Search functionality on University of Latvia website
         | Kurss |
         | Ziņas |
         | Programma |
-
+@test3
     Scenario: As as user, I can clear search results
-        Given I see the search result page
+        Given I see the search result page for "hyperlink"
         When I clear filters and search 
         Then I see empty search page
 
