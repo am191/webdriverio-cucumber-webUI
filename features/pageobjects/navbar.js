@@ -36,6 +36,7 @@ class Navbar {
 
     async triggerSearch(){
         const searchTrigger = this.searchBarButton;
+        await searchTrigger.waitForClickable();
         await searchTrigger.click();
     }
     

@@ -2,8 +2,7 @@ import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect, $ } from '@wdio/globals'
 
 import MainPage from '../pageobjects/main.page.js';
-
-
+ 
   Given('I see the main page', async() => {
     await MainPage.open();
   });

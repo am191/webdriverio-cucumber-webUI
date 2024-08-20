@@ -7,7 +7,8 @@ class SearchResultPage extends Page {
     }
 
     get searchField() {
-        return $('#searchOrder');
+        return $('#searchResultsQuery'); 
+        //return $('#searchOrder');
     }
 
     get searchSubmitButton() {
@@ -30,21 +31,31 @@ class SearchResultPage extends Page {
         return $$('span.searchResults__resultCategory');
     }
 
-    get filterSection() {
-        return $('div.searchFilters');
-    }
-
     get clearFilters() {
         return $('a.searchFilters__filterCancelButton')
     }
 
+    // "getter" method to select filter accordeon based on the name
+    async getFilterAccordeon(title){
+        return $("//div[contains(@class, 'searchFilters__categoryTitle') and text()='${title}']")
+    }
+
+    async getQueryText(){
+        let searchText = (await this.searchField).getText();
+        return searchText;
+    }
+
+    // methods for interacting with elements
     async compareResults(int) {
-        let result = (await this.resultCount).getText();
-        result = parseInt(result,10); // in case string is returned
-        if (result > int){
+        let resultText = await this.resultCount;
+        await resultText.waitForDisplayed();
+        resultText = await resultText.getText();
+
+        let resultNum = parseInt(resultText,10);
+        if (resultNum > int){
             return true;
         } else {
-            throw new Error(`Query returns less than ${int} results`);
+            throw new Error(`Query returns less than ${int} results, returns ${resultNum}, ${resultText}`);
         }
     }
 
@@ -66,13 +77,27 @@ class SearchResultPage extends Page {
 
     async triggerSearch(){
         const searchTrigger = this.searchSubmitButton;
+        await expect(searchTrigger).toBeClickable();
         await searchTrigger.click();
+    }
+
+    async selectCheckbox(value){
+        const checkbox = await $(`input[value="${value}"`);
+        await expect(checkbox).toBeClickable();
+        await checkbox.click();
+    }
+
+    async checkArticleCategories(category){
+        const elements = this.articleCategories;
+        const texts = await Promise.all(elements.map(async element => await element.getText()));
+        const result = texts.every(text => text === category);
+        await expect(result).toBe.true;
+
     }
 
     open() {
         return super.open('search');
     }
-
     openSpecific(string) {
         return super.open(`search?query=${string}`)
     }

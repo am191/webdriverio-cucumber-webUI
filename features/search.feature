@@ -9,30 +9,37 @@ Feature: Search functionality on University of Latvia website
         And I see a cookie modal pop-up
         And I click the "Saglabāt uzstādījumus" button
         Then I see the main page without the cookie preference bar
+
+    Scenario: As a user, I can open the Search bar
+        Given I see the main page
+        When I click on the Search button on the navigation bar
+        Then I should see the Search bar open
+
+    Scenario: As a user, I can search for a term with no results
+        Given The Search bar is open
+        When I input "abcabc" in the navigation bar search input field
+        And I click the search button
+        Then I should see the Search Result page
+        And I should see 0 search matches
+
+    Scenario: As a user, I can search for a valid term and see results
+        Given I am on the Search Result page
+        When I input "datorzinātnes" in the search page input field
+        And I click the search button in the Search Result page
+        Then I should see more than 1 search match
 @test
-    Scenario: As a user, I can search for an article
-        Given I see the Search option
-        When I click on the Search button
-        And I see the Search bar open
-        And I input "abc" in the navigation bar search input field
-        And I click search
-        And I see the search page
-        And I see 0 search matches
-        And I input "datorzinātnes" in the search page input field
-        Then I see more than 1 search match
-@test1
     Scenario: As a user, I can sort search results by age
-        Given I see the search result page for "hyperlink"
+        Given I see the search result page for "kursi"
         When I see the "KĀRTOT PĒC" filter section
         And I notice the year that the first article is from
         And I choose to sort by the "oldest"
-        Then I see the first article is from year 2010
+        Then I see the first article year is before the default year
 @test2
     Scenario: As a user, I can sort search results by type
-        Given I see the search result page for "hyperlink"
+        Given I see the search result page for "komunikācijas"
         When I open "Tipi" filter section
         And I check <type> checkbox
-        And I see all returned results have <type> type
+        And I see returned results have <type> type
         Then I clear the filter checkbox
 
         Examples: 

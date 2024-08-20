@@ -5,20 +5,37 @@ import Navbar from '../pageobjects/navbar.js';
 import SearchResultPage from '../pageobjects/searchResult.page.js';
 import MainPage from '../pageobjects/main.page.js';
 
-
+///GIVEN STATEMENTS
 Given('I see the Search option', async() => {
   await MainPage.open();
   await expect(Navbar.searchButton).toBeDisplayedInViewport();
 });
 
-When('I click on the Search button', async() => {
+Given('The Search bar is open', async() => {
+  await MainPage.open();
+  await expect(Navbar.searchButton).toBeDisplayedInViewport();
+  const search = Navbar.searchButton;
+  await search.click();
+  await expect(Navbar.searchBar).toBeDisplayedInViewport();
+});
+
+Given('I am on the Search Result page', async() => {
+  await SearchResultPage.open();
+  const headerText = await SearchResultPage.header.getText();
+  await expect(headerText).toContain('Meklēšana');
+});
+
+Given('I am on the Search Result page for {string} query', async() => {
+  await SearchResultPage.openSpecific(string);
+  const queryText = await SearchResultPage.getQueryText();
+  await expect(queryText).toBe(string);
+});
+
+//WHEN STATEMENTS
+When('I click on the Search button on the navigation bar', async() => {
   const search = Navbar.searchButton;
   await expect(search).toBeClickable();
   await search.click();
-});
-
-When('I see the Search bar open', async() => {
-  await expect(Navbar.searchBar).toBeDisplayedInViewport();
 });
 
 When('I input {string} in the navigation bar search input field', async(string) => {
@@ -27,27 +44,37 @@ When('I input {string} in the navigation bar search input field', async(string) 
 
 When('I input {string} in the search page input field', async(string) => {
   await SearchResultPage.searchFromPage(string);
-  await SearchResultPage.triggerSearch();
 });
 
-When('I click search', async(string) => {
+When('I click the search button', async() => {
   await expect(Navbar.searchBarButton).toBeClickable();
   await Navbar.triggerSearch();
 });
 
-When('I see the search page', async(string) => {
-    //asserting that we are on the search page
-    const headerText = await expect(SearchResultPage.header).getText();
-    await expect(headerText).to.include('Meklēšana');
+When('I click the search button in the Search Result page', async() => {
+  await SearchResultPage.triggerSearch();
 });
 
-When('I see {int} search matches', async() => {
+
+//THEN STATEMENTS
+Then('I should see the Search bar open', async() => {
+  await expect(Navbar.searchBar).toBeDisplayedInViewport();
+});
+
+Then('I should see the Search Result page', async() => {
+  //asserting that we are on the search result page
+  const headerText = await SearchResultPage.header.getText();
+  await expect(headerText).toContain('Meklēšana');
+});
+
+When('I should see {int} search matches', async() => {
   await expect(SearchResultPage.resultCount).toBeDisplayed();
   await SearchResultPage.exactResults(int);
 });
 
-
-Then('I see more than {int} search match', async(int) => {
+Then('I should see more than {int} search match', async(int) => {
   await expect(SearchResultPage.resultCount).toBeDisplayed();
   await SearchResultPage.compareResults(int);
 });
+
+

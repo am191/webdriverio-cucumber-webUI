@@ -50,7 +50,17 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: [
+                '--no-default-browser-check',           // Disable default browser check
+                '--disable-default-apps',               // Disable default apps
+                '--disable-popup-blocking',             // Optional: Disable popup blocking
+                '--start-maximized',                    // Optional: Start Chrome maximized
+                '--disable-search-engine-choice-screen',// Disable default search engine popup   
+                // any other flags you might need
+            ],
+        },
     }],
 
     //
