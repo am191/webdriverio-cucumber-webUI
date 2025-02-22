@@ -129,6 +129,15 @@ class SearchResultPage extends Page {
         await checkbox.click();
     }
 
+    async clearSearch() {
+        const searchField = await this.searchField
+        await searchField.clearValue()
+    }
+
+    async clearFilters() {
+
+    }
+
     open() {
         return super.open('search');
     }

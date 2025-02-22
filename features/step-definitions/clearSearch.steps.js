@@ -3,17 +3,13 @@ import { expect, $ } from '@wdio/globals'
 
 import SearchResultPage from '../pageobjects/searchResult.page.js';
 
-Given('I see the search result page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
+When('I clear search field', async () => {
+  await SearchResultPage.clearSearch()
+  await expect(SearchResultPage.searchField).toHaveValue('')
+});
 
-When('I clear filters and search', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
+Then('I see {string} search results', async (string) => {
+    const resultNum = await SearchResultPage.resultCount
+    await expect(resultNum).toHaveText(string)
+});
 
-Then('I see empty search page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });

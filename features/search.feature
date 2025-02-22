@@ -26,7 +26,7 @@ Feature: Search functionality on University of Latvia website
         When I input "datorzinātnes" in the search page input field
         And I click the search button in the Search Result page
         Then I should see more than 1 search match
-@test
+
     Scenario: As a user, I can sort search results by age
         Given I am on the Search Result page for <searchQuery> query
         When I sort results by <sortOrder>
@@ -38,27 +38,17 @@ Feature: Search functionality on University of Latvia website
         | searchQuery | sortOrder | parameter |
         | kursi | asc | orderBy=asc |
         | priekšmeti | desc | orderBy=desc |
-
-        
-@test2
-    Scenario: As a user, I can sort search results by type
-        Given I am on the Search Result page for "komunikācijas" query
-        When I open "Tipi" filter section
-        And I check <type> checkbox
-        And I see returned results have <type> type
-        Then I clear the filter checkbox
-
-        Examples: 
-        | type |
-        | Saturs |
-        | Kurss |
-        | Ziņas |
-        | Programma |
-@test3
+ 
+@test
     Scenario: As as user, I can clear search results
-        Given I see the search result page for "hyperlink"
-        When I clear filters and search 
-        Then I see empty search page
+        Given I am on the Search Result page for <searchQuery> query
+        When I clear search field 
+        And I click the search button in the Search Result page
+        Then I see "0" search results
+
+        Examples:
+        | searchQuery |
+        | pasākums | 
 
 
 
