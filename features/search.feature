@@ -39,7 +39,7 @@ Feature: Search functionality on University of Latvia website
         | kursi | asc | orderBy=asc |
         | priekšmeti | desc | orderBy=desc |
  
-@test
+
     Scenario: As as user, I can clear search results
         Given I am on the Search Result page for <searchQuery> query
         When I clear search field 

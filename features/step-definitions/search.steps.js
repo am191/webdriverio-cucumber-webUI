@@ -3,16 +3,16 @@ import { expect, $ } from '@wdio/globals'
 
 import Navbar from '../pageobjects/navbar.js';
 import SearchResultPage from '../pageobjects/searchResult.page.js';
-import MainPage from '../pageobjects/main.page.js';
+import Page from '../pageobjects/page.js';
 
 ///GIVEN STATEMENTS
 Given('I see the Search option', async() => {
-  await MainPage.open();
+  await Page.open();
   await expect(Navbar.searchButton).toBeDisplayedInViewport();
 });
 
 Given('The Search bar is open', async() => {
-  await MainPage.open();
+  await Page.open();
   await expect(Navbar.searchButton).toBeDisplayedInViewport();
   const search = Navbar.searchButton;
   await search.click();

@@ -1,35 +1,31 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect, $ } from '@wdio/globals'
 
-import MainPage from '../pageobjects/main.page.js';
- 
-  Given('I see the main page', async() => {
-    await MainPage.open();
-  });
+import CookieBar from '../pageobjects/cookieBar.js';
 
   When('I see cookie preference bar', async() => {
     //check if the cookie button is VISIBLE
-    await expect(MainPage.cookiePrefBar).toBeDisplayed();
-    await expect(MainPage.customizeCookiesBtn).toBeDisplayed();
+    await expect(CookieBar.cookiePrefBar).toBeDisplayed();
+    await expect(CookieBar.customizeCookiesBtn).toBeDisplayed();
   });
 
   When('I can select optional checkbox for {string} cookies', async(string) => {
-    await MainPage.selectCookieCategory(string);
+    await CookieBar.selectCookieCategory(string);
   });
 
   When('I click the {string} button', async(string) => {
-    await MainPage.clickButtonByText(string);
+    await CookieBar.clickButtonByText(string);
   });
 
   When('I see a cookie modal pop-up', async() => {
-    const elements = MainPage.cookieModal; //an array of elements
+    const elements = CookieBar.cookieModal; //an array of elements
     for (const element of elements) {
       await expect(element).toBeDisplayed();
     };
   });
 
   Then('I see the main page without the cookie preference bar', async() => {
-    const elements = MainPage.cookieModal;
+    const elements = CookieBar.cookieModal;
     for (const element of elements) {
       await expect(element).not.toBeDisplayed();
     };

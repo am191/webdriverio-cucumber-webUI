@@ -1,9 +1,8 @@
 import { $ } from '@wdio/globals'
 import Page from './page.js';
 
-
-class MainPage extends Page {
-    // SELECTORS RELATED TO COOKIE PREF BAR
+class CookieBar extends Page {
+    // SELECTORS RELATED TO COOKIE PREFERENCE BAR
     get cookiePrefBar() {
         return $('div[id="cconsent-bar"]');
     }
@@ -22,7 +21,7 @@ class MainPage extends Page {
         return $('button=Saglabāt uzstādījumus');
     }
 
-    // METHODS TO INTERACT WITH THE MAIN PAGE  
+    // METHODS TO INTERACT WITH THE BAR  
     getCookieCategory(category) {
         return $(`input[data-category="${category}"]`)
     }
@@ -31,9 +30,6 @@ class MainPage extends Page {
         await checkbox.waitForClickable();
         await checkbox.click();
         await checkbox.isSelected();
-        //data-category="statistics"
-        //data-category="functional"
-        //data-category="targeted"
     }
 
     async clickButtonByText(buttonText) {
@@ -41,10 +37,6 @@ class MainPage extends Page {
         await button.waitForClickable({ timeout: 3000 });
         await button.click();
     }
-
-    open () {
-        return super.open('#');
-    }
 }
 
-export default new MainPage();
+export default new CookieBar();
