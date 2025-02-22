@@ -25,7 +25,7 @@ Given('I am on the Search Result page', async() => {
   await expect(headerText).toContain('Meklēšana');
 });
 
-Given('I am on the Search Result page for {string} query', async() => {
+Given('I am on the Search Result page for {string} query', async(string) => {
   await SearchResultPage.openSpecific(string);
   const queryText = await SearchResultPage.getQueryText();
   await expect(queryText).toBe(string);

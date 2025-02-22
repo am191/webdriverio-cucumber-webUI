@@ -1,7 +1,6 @@
 Feature: Search functionality on University of Latvia website 
-
+@test
     Scenario: As a user, I can select cookie preferences
-
         Given I see the main page
         When I see cookie preference bar 
         And I can select optional checkbox for "statistics" cookies
@@ -29,14 +28,21 @@ Feature: Search functionality on University of Latvia website
         Then I should see more than 1 search match
 @test
     Scenario: As a user, I can sort search results by age
-        Given I see the search result page for "kursi"
-        When I see the "KĀRTOT PĒC" filter section
-        And I notice the year that the first article is from
-        And I choose to sort by the "oldest"
-        Then I see the first article year is before the default year
+        Given I am on the Search Result page for <searchQuery> query
+        When I sort results by <sortOrder>
+        And I verify that the URL contains <parameter> for required sorting
+        And I wait until the query results have updated
+        Then I verify the sorting order is <sortOrder>
+
+        Examples:
+        | searchQuery | sortOrder | parameter |
+        | kursi | asc | orderBy=asc |
+        | priekšmeti | desc | orderBy=desc |
+
+        
 @test2
     Scenario: As a user, I can sort search results by type
-        Given I see the search result page for "komunikācijas"
+        Given I am on the Search Result page for "komunikācijas" query
         When I open "Tipi" filter section
         And I check <type> checkbox
         And I see returned results have <type> type

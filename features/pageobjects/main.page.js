@@ -5,7 +5,6 @@ import Page from './page.js';
 class MainPage extends Page {
     // SELECTORS RELATED TO COOKIE PREF BAR
     get cookiePrefBar() {
-        // id="cconsent-bar"
         return $('div[id="cconsent-bar"]');
     }
 
@@ -22,7 +21,6 @@ class MainPage extends Page {
     get cookieModalBtn(){
         return $('button=Saglabāt uzstādījumus');
     }
-
 
     // METHODS TO INTERACT WITH THE MAIN PAGE  
     getCookieCategory(category) {

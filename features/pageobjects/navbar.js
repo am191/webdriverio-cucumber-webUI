@@ -25,15 +25,14 @@ class Navbar {
     get searchBarButton(){
         return $('a[id="mainSearchButton"]');
     }
-
-    //methods to interact with the navbar
+    //search bar input
     async search(query) {
         const searchInputField = this.searchInput;
     
         await searchInputField.waitForClickable();
         await searchInputField.setValue(query);   
     }
-
+    //press on search button
     async triggerSearch(){
         const searchTrigger = this.searchBarButton;
         await searchTrigger.waitForClickable();
