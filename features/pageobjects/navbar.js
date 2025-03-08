@@ -9,9 +9,7 @@ class Navbar {
     }
 
     get searchButton(){
-        const result = $('span.upperMenu__searchIcon');
-        console.log(result);
-        return result;
+        return $('span.upperMenu__searchIcon');
     }
 
     get searchBar(){
@@ -25,18 +23,15 @@ class Navbar {
     get searchBarButton(){
         return $('a[id="mainSearchButton"]');
     }
+
+    get closeSearchButton(){
+        return $('button.searchWindow__close.searchClose')
+    }
+
     //search bar input
     async search(query) {
         const searchInputField = this.searchInput;
-    
-        await searchInputField.waitForClickable();
         await searchInputField.setValue(query);   
-    }
-    //press on search button
-    async triggerSearch(){
-        const searchTrigger = this.searchBarButton;
-        await searchTrigger.waitForClickable();
-        await searchTrigger.click();
     }
     
 }

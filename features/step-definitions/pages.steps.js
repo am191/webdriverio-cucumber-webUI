@@ -6,6 +6,8 @@ import Page from '../pageobjects/page.js';
 
 //contains all defintions for page landing and redirecting
  
-Given('I see the main page', async() => {
-    await Page.open('#');
+Given('I am on the {string} page', async(string) => {
+    await Page.open(string);
   });
+
+  

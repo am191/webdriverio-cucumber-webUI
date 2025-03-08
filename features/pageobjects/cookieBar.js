@@ -21,22 +21,15 @@ class CookieBar extends Page {
         return $('button=Saglabāt uzstādījumus');
     }
 
-    // METHODS TO INTERACT WITH THE BAR  
-    getCookieCategory(category) {
+
+    async getCookieCategory(category) {
         return $(`input[data-category="${category}"]`)
     }
-    async selectCookieCategory(category) {
-        const checkbox = this.getCookieCategory(category);
-        await checkbox.waitForClickable();
-        await checkbox.click();
-        await checkbox.isSelected();
-    }
 
-    async clickButtonByText(buttonText) {
-        const button = $(`//button[text()="${buttonText}"]`);
-        await button.waitForClickable({ timeout: 3000 });
-        await button.click();
+    async findButtonByText(buttonText) {
+        return $(`//button[text()="${buttonText}"]`);
     }
 }
 
 export default new CookieBar();
+ 

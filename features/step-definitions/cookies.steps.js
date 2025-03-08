@@ -10,11 +10,16 @@ import CookieBar from '../pageobjects/cookieBar.js';
   });
 
   When('I can select optional checkbox for {string} cookies', async(string) => {
-    await CookieBar.selectCookieCategory(string);
+    const checkbox = await CookieBar.getCookieCategory(string);
+    await checkbox.waitForClickable();
+    await checkbox.click();
+    await checkbox.isSelected();
   });
 
   When('I click the {string} button', async(string) => {
-    await CookieBar.clickButtonByText(string);
+    const cookieBtn = await CookieBar.findButtonByText(string)
+    await cookieBtn.waitForClickable({ timeout: 3000 });
+    await cookieBtn.click();
   });
 
   When('I see a cookie modal pop-up', async() => {
