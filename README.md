@@ -23,6 +23,7 @@ Run `npx wdio run wdio.conf.js` command in the root project directory
 ## Test execution results
 Currently, `spec` library for execution results is used, where everything is reported through the command line. It is planned to add another reporting library for outputting results into another file
 
+![test run result](https://github.com/am191/webdriverio-learn/blob/41f1f6da1322290060ce173452168e274d54feba/test%20run%20results.png)
 
 ## Future plans
 - [ ]  Configure tests to run in parallel on several agents
